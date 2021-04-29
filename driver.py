@@ -6,7 +6,7 @@ from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 import nearestneigbor
 
-rawData = pd.read_csv (r'./higgs-boson/training.csv')
+rawData = pd.read_csv (r'./processed training.csv')
 # rawtest = pd.read_csv (r'./higgs-boson/test.csv')
 
 # TP, TN, FP, FN
@@ -70,8 +70,8 @@ def main():
     C_list = [0.1, 0.2, 0.3, 0.45, 0.5, 0.6, 0.7, 0.8, 0.9]
     C_list_acc = []
 
-    N_list = [5, 7, 9, 11, 13, 15, 17, 19, 21]
-    # N_list = np.arange(5, 50, 5)
+    # N_list = [5, 7, 9, 11, 13, 15, 17, 19, 21]
+    N_list = np.arange(5, 50, 5)
     N_list_acc = []
 
     k = 10
@@ -102,16 +102,16 @@ def main():
     plt.plot(C_list, C_list_acc, label='Hyper_Accuracy_Plot(C)')
     plt.xlabel('Hyperparameter C')
     plt.ylabel("accuracy (%)")
-    plt.axis([0, 1, .6, 1])
+    plt.axis([0, 1, .5, 1])
     plt.savefig("Hyper_Accuracy_Plot(C).pdf")
-    # plt.show()
+    plt.show()
 
     plt.plot(N_list, N_list_acc, label='Hyper_Accuracy_Plot(N)')
     plt.xlabel('Hyperparameter N')
     plt.ylabel("accuracy (%)")
-    plt.axis([4, 23, .6, 1])
+    plt.axis([0, 50, .6, 1])
     plt.savefig("Hyper_Accuracy_Plot(N).pdf")
-    # plt.show()
+    plt.show()
 
     # print(C_roc)
     # print(N_roc)
@@ -127,7 +127,7 @@ def main():
     plt.ylabel("Sensitivity")
     plt.axis([0, 1, 0, 1])
     plt.savefig("ROC_Plot(C).pdf")
-    # plt.show()
+    plt.show()
 
     x = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     y = [0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -140,7 +140,7 @@ def main():
     plt.ylabel("Sensitivity")
     plt.axis([0, 1, 0, 1])
     plt.savefig("ROC_Plot(N).pdf")
-    # plt.show()
+    plt.show()
 
     # Train on best hyperparameter and tested on test set
     alg = SVC(C=best_C, kernel='linear')
