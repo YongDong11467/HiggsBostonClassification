@@ -1,0 +1,5 @@
+Manual
+Simply run the code. Results of code are printed out to the terminal or displayed as pop up graphs.
+Libraries used are pandas,  numpy, sklearn.svm import SVC, sklearn.neighbors import KNeighborsClassifier, sklearn.metrics import confusion_matrix, matplotlib.pyplot
+If libraries are not already installed, use pip install.
+Certain values of C, such as values over 1, for SVM took too long to run. We removed these values that took a long time, but if desired they can be input through the variable “C_list”.
