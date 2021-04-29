@@ -70,7 +70,8 @@ def main():
     C_list = [0.1, 0.2, 0.3, 0.45, 0.5, 0.6, 0.7, 0.8, 0.9]
     C_list_acc = []
 
-    N_list = [1, 3, 5, 7, 9, 11, 13, 15, 17]
+    N_list = [5, 7, 9, 11, 13, 15, 17, 19, 21]
+    # N_list = np.arange(5, 50, 5)
     N_list_acc = []
 
     k = 10
@@ -103,17 +104,17 @@ def main():
     plt.ylabel("accuracy (%)")
     plt.axis([0, 1, .6, 1])
     plt.savefig("Hyper_Accuracy_Plot(C).pdf")
-    plt.show()
+    # plt.show()
 
     plt.plot(N_list, N_list_acc, label='Hyper_Accuracy_Plot(N)')
     plt.xlabel('Hyperparameter N')
     plt.ylabel("accuracy (%)")
-    plt.axis([0, 18, .6, 1])
+    plt.axis([4, 23, .6, 1])
     plt.savefig("Hyper_Accuracy_Plot(N).pdf")
-    plt.show()
+    # plt.show()
 
-    print(C_roc)
-    print(N_roc)
+    # print(C_roc)
+    # print(N_roc)
 
     x = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     y = [0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -126,7 +127,7 @@ def main():
     plt.ylabel("Sensitivity")
     plt.axis([0, 1, 0, 1])
     plt.savefig("ROC_Plot(C).pdf")
-    plt.show()
+    # plt.show()
 
     x = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     y = [0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -139,7 +140,17 @@ def main():
     plt.ylabel("Sensitivity")
     plt.axis([0, 1, 0, 1])
     plt.savefig("ROC_Plot(N).pdf")
-    plt.show()
+    # plt.show()
+
+    # Train on best hyperparameter and tested on test set
+    alg = SVC(C=best_C, kernel='linear')
+    alg.fit(trainData, trainLabel)
+    print("err = " + str(np.mean(testLabel != alg.predict(testData))))
+
+    alg = KNeighborsClassifier(n_neighbors=best_N)
+    alg.fit(trainData, trainLabel)
+    print("err = " + str(np.mean(testLabel != alg.predict(testData))))
+
 
 
 main()
