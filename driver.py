@@ -67,10 +67,10 @@ def main():
     #         acc = acc + 1
     # print(acc / 1000)
 
-    C_list = [0.1, 0.3, 0.5, 0.7]
+    C_list = [0.1, 0.2, 0.3, 0.45, 0.5, 0.6, 0.7, 0.8, 0.9]
     C_list_acc = []
 
-    N_list = [1, 3, 5, 7]
+    N_list = [1, 3, 5, 7, 9, 11, 13, 15, 17]
     N_list_acc = []
 
     k = 10
@@ -98,26 +98,26 @@ def main():
     print("best_N=", best_N)
     print("Finish Preprocessing")
 
-    # plt.plot(C_list, C_list_acc, label='Hyper_Accuracy_Plot(C)')
-    # plt.xlabel('Hyperparameter C')
-    # plt.ylabel("accuracy (%)")
-    # plt.axis([0, .8, .6, .8])
-    # plt.savefig("Hyper_Accuracy_Plot(C).pdf")
-    # plt.show()
-    #
-    # plt.plot(N_list, N_list_acc, label='Hyper_Accuracy_Plot(N)')
-    # plt.xlabel('Hyperparameter N')
-    # plt.ylabel("accuracy (%)")
-    # plt.axis([0, 8, .6, .8])
-    # plt.savefig("Hyper_Accuracy_Plot(N).pdf")
-    # plt.show()
+    plt.plot(C_list, C_list_acc, label='Hyper_Accuracy_Plot(C)')
+    plt.xlabel('Hyperparameter C')
+    plt.ylabel("accuracy (%)")
+    plt.axis([0, 1, .6, 1])
+    plt.savefig("Hyper_Accuracy_Plot(C).pdf")
+    plt.show()
+
+    plt.plot(N_list, N_list_acc, label='Hyper_Accuracy_Plot(N)')
+    plt.xlabel('Hyperparameter N')
+    plt.ylabel("accuracy (%)")
+    plt.axis([0, 18, .6, 1])
+    plt.savefig("Hyper_Accuracy_Plot(N).pdf")
+    plt.show()
 
     print(C_roc)
     print(N_roc)
 
-    x = [0, 0, 0, 0]
-    y = [0, 0, 0, 0]
-    for i in range(0, 4):
+    x = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    y = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    for i in range(0, len(x)):
         d = C_roc[i]
         x[i] = d[1]/(d[1] + d[2])
         y[i] = d[0]/(d[0] + d[3])
@@ -128,9 +128,9 @@ def main():
     plt.savefig("ROC_Plot(C).pdf")
     plt.show()
 
-    x = [0, 0, 0, 0]
-    y = [0, 0, 0, 0]
-    for i in range(0, 4):
+    x = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    y = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    for i in range(0, len(x)):
         d = N_roc[i]
         x[i] = d[1]/(d[1] + d[2])
         y[i] = d[0]/(d[0] + d[3])
