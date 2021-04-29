@@ -4,7 +4,6 @@ from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
-import nearestneigbor
 
 rawData = pd.read_csv (r'./processed training.csv')
 # rawtest = pd.read_csv (r'./higgs-boson/test.csv')
